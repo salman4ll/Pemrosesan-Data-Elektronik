@@ -1,0 +1,4 @@
+"0","pairs(~Sepal.Length+Sepal.Width+Petal.Length+Petal.Width,"
+"0","      data = iris,"
+"0","      lower.panel = NULL,"
+"0","      main=""Simple Scatter Plot Matrix"")"

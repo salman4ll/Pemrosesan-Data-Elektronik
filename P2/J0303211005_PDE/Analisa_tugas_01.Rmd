@@ -1,0 +1,169 @@
+---
+title: "Analisa Tugas 1"
+author: "Salman Al-Farisi"
+date: "2023-02-03"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Latihan 1.1 
+*Jalankan RStudio dan di R Console atau Code Editor. Ketik dan jalankan perintah berikut. Catat hasilnya dan bila perlu berilah penjelasan singkat dari hasil yang diperoleh*
+
+```{r, comment=NA}
+fivenum(iris$Petal.Width)
+fivenum(iris$Petal.Length)
+```
+Perintah fivenum berfungsi untuk menampilkan 5 data, dengan urutan sebagai berikut.
+
+1.    Nilai Minimum 
+2.    1st Quartil
+3.    Median
+4.    3rd Quartil
+5.    Nilai Maksimum
+
+## Latihan 1.2
+*Jalankan RStudio dan di R Console atau Code Editor. Ketik dan jalankan perintah berikut. Catat hasilnya dan bila perlu berilah penjelasan singkat dari harsil yang diperoleh*
+
+```{r comment=NA}
+#menyimpan data ke dalam variable data
+data <- c(2,2,8,2,7,1,2,9,8,2,2,10,9,2)
+#rumus mencari rata-rata secara manual, dengan (jumlah seluruh data) dibagi (banyaknya data)
+sum(data)/length(data)
+#rumus mencari rata-rata dengan perintah yang sudah disediakan R
+mean(data) 
+#Perintah untuk mencari median atau nilai tengah dari sekumpulan data yang sudah di uraikan dari terkecil hingga terbesar
+median(data)
+# sort = perintah untuk Mengurutkan data dari terkecil hingga terbesar
+sort(data)
+#perintah untuk menyajikan data dalam bentuk tampilan table
+table(data)
+#perintah manual untuk mencari nilai modus atau nilai yang paling banyak dalam suatu data
+names(table(data))[table(data)==max(table(data))]
+```
+## Latihan 1.3
+*Jalankan RStudio dan di R Console atau Code Editor. Ketik dan jalankan perintah berikut. Catat hasilnya dan bila perlu berilah penjelasan singkat dari harsil yang diperoleh*
+```{r comment=NA}
+#Menyimpan dataset iris kedalam variable dat
+dat<-iris
+#perintah untuk mencari nilai kuartil dari dataset dat, dengan batas 0.4
+quantile(dat$Sepal.Length, 0.4)
+#perintah untuk mencari nilai kuartil dari dataset dat, dengan batas 0.90
+quantile(dat$Sepal.Length, 0.90)
+```
+## Latihan 1.4 
+*Jalankan RStudio dan di R Console atau Code Editor. Ketik dan jalankan perintah berikut. Catat hasilnya dan bila perlu berilah penjelasan singkat dari harsil yang diperoleh*
+
+Diberikan dua buah vector X dan vector Y yang masing-masing mewakili variable Luas (Ukuran) Rumah dalam feet^2^ dan konsumsi Listrik perbulan dalam Kwh
+```{r, comment=NA}
+#Menyimpan sekumpulan data kedalam variable X
+X <- c(1290, 1350, 1470, 1600, 1710, 1840, 1980, 2230, 2400, 2930)
+#Menyimpan sekumpulan data kedalam variable Y
+Y <- c(1182, 1172, 1264, 1493, 1671, 1711, 1804, 1840, 1956, 1954)
+
+summary(X)
+summary(Y)
+```
+## 1.8 Soal Latihan 
+1.    Hitung statistika deskriptif dari dataset iris dan interpretasikan outputnya untuk variable:
+  +   Petal.Length
+```{r, comment=NA}
+#perintah summary berfungsi untuk menampilkan nilai ringkasan dari Petal.Length
+summary(iris$Petal.Length)
+#karena dalam perintah summary tidak terdapat nilai modus, maka kita cari secara manual, dengan mengetikkan perintah-perintah di bawah iniL:
+table(iris$Petal.Length)
+#perintah manual untuk mencari nilai modus atau nilai yang paling banyak dalam data Petal Length
+modus <- names(table(iris$Petal.Length))[table(iris$Petal.Length)==max(table(iris$Petal.Length))]
+
+print(paste("Modus dari Petal Length adalah", modus))
+
+```
+
+  +   Petal.Width
+```{r, comment=NA}
+#perintah summary berfungsi untuk menampilkan nilai ringkasan dari Petal Width
+summary(iris$Petal.Width)
+#karena dalam perintah summary tidak terdapat nilai modus, maka kita cari secara manual, dengan mengetikkan perintah-perintah di bawah ini:
+table(iris$Petal.Width)
+#perintah manual untuk mencari nilai modus atau nilai yang paling banyak dalam data Petal Width
+modus <- names(table(iris$Petal.Width))[table(iris$Petal.Width)==max(table(iris$Petal.Width))]
+
+print(paste("Modus dari Petal Length adalah", modus))
+
+```
+2.    Hitung nilai ukuran dispersi untuk variable Petal.Length pada dataset iris
+```{r,comment=NA}
+quantile(iris$Petal.Length, 0.25)
+quantile(iris$Petal.Length, 0.75)
+
+IQR(iris$Petal.Length)
+iqr <- as.vector(quantile(iris$Petal.Length))
+iqr[4]-iqr[2]
+iris.num <- iris[, 1:4]
+sd(iris$Petal.Length)
+var(iris$Petal.Length)
+lapply(iris.num, sd)
+lapply(iris.num, var)
+summary(iris)
+
+```
+3.    Hitung kurtosis dan skewness dari variable Petal.Width pada dataset iris
+```{r,comment=NA}
+library(moments)
+skewness(iris$Petal.Width)
+kurtosis(iris$Petal.Width)
+```
+4.    Hitung matrix korelasi pada dataset iris, interpretasikan outputnya dan visualisasikan hasilnya
+```{r,comment=NA}
+library(corrplot)
+iris.num <- iris[, 1:4]
+round(cor(iris.num), digits=2)
+corrplot(cor(iris.num),method="number",type="upper")
+```
+5.    Berikut data tentang jumlah pengunjung XXI hari ke-20 s.d hari ke-49. Buat tabel distribusi frekuensinya dan bagi kelas interval sesuai dengan yang Anda inginkan.
+```{r,comment=NA}
+
+baris1<-c(67,87,67,54,67)
+baris2<-c(86,76,100,56,45)
+baris3<-c(78,44,90,89,78)
+baris4<-c(77,86,45,67,77)
+baris5<-c(99,60,87,87,112)
+baris6<-c(45,56,78,65,67)
+
+nilai<-c(baris1,baris2,baris3,baris4,baris5,baris6)
+sort(nilai)
+
+length(nilai)
+
+cut(nilai,breaks=3)
+
+table(cut(nilai,breaks=3))
+
+cbind(table(cut(nilai,breaks=3)))
+
+cut(nilai,breaks=seq(43.5,112.5,10))
+
+table(cut(nilai,breaks=seq(43.5,112.5,10)))
+
+cbind(table(cut(nilai,breaks=seq(43.5,112.5,10))))
+
+# dapat juga menggunakan fungsi transfor()
+transform(table(cut(nilai,breaks=seq(43.5,112.5,10))))
+```
+6.    Jalankan R atau RStudio kemudian ketikkan skrip berikut:
+```{r,comment=NA}
+pairs(~Sepal.Length+Sepal.Width+Petal.Length+Petal.Width,
+      data = iris,
+      lower.panel = NULL,
+      main="Simple Scatter Plot Matrix")
+```
+7.    Buat diagram dahan dauh(*Steam and Leaf Plot*) untuk data diatas
+```{r,comment=NA}
+stem(nilai)
+```

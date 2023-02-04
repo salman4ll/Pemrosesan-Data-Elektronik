@@ -1,0 +1,37 @@
+"0","install.packages(""moments"")"
+"2","WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+"
+"2","Installing package into ‘C:/Users/sfari/AppData/Local/R/win-library/4.2’
+(as ‘lib’ is unspecified)
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.2/moments_0.14.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 56264 bytes (54 KB)
+"
+"2","downloaded 54 KB
+
+"
+"1","package ‘moments’ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\sfari\AppData\Local\Temp\Rtmp0c6lgy\downloaded_packages"
+"1",""
+"1","
+"
+"0","library(moments)"
+"0","skewness(iris$Petal.Width)"
+"1","[1]"
+"1"," -0.1019342"
+"1","
+"
+"0","kurtosis(iris$Petal.Width)"
+"1","[1]"
+"1"," 1.663933"
+"1","
+"
